@@ -29,6 +29,9 @@
                       <li>
                         <a class="text-orange-800 transition hover:text-orange-900" href="#"> Home </a>
                       </li>
+                      <li>
+                        <a class="text-orange-800 transition hover:text-orange-900" href="{{ route('contact-us.index') }}"> Contact us </a>
+                      </li>
           
                     </ul>
                   </nav>

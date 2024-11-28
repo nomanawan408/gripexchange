@@ -23,6 +23,7 @@ class AccountStatement extends Model
         'receipt_path',
         'description',
         'status',
+        'type',
     ];
 
     public function user()

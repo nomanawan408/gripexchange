@@ -81,7 +81,7 @@ class WithdrawController extends Controller
                 'customer_transaction_id' => $withdrawal->customer_transaction_id,
                 'receipt_path' => $withdrawal->receipt_path,
                 'description' => $withdrawal->description,
-                // 'status' => '', // Assuming withdrawals are automatically approved
+                'type' => 'Withdrawal via ' . $withdrawal->paymentMethod->title,
             ]);
 
             // Update wallet balance

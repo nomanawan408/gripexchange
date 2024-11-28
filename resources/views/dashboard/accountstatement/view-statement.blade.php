@@ -32,7 +32,8 @@
       @if($accountStatements->isEmpty())
           <p>No account statements available.</p>
       @else
-          <table class="table table-striped">
+      <div class="table-responsive">
+          <table class="table table-striped table-responsive">
               <thead>
                   <tr>
                       <th scope="col">TID</th>
@@ -99,7 +100,7 @@
                   @endforeach
               </tbody>
           </table>
-  
+      </div>
           {{-- <div class="d-flex justify-content-center">
               {{ $accountStatements->links() }}
           </div> --}}

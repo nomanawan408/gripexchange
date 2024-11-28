@@ -1,5 +1,10 @@
 
 <div class="sidebar_cont">
+   <div class="w-100 d-flex justify-content-end">
+      <button class="close_btn btn btn-light">
+        <i class="fas fa-times"></i>
+      </button>
+   </div>
   
   <div class="menus">
     <ul class="menu_list">
@@ -55,10 +60,13 @@
         <li class="{{ Route::is('profile.index') ? 'active_menu' : '' }}">Profile</li>
       </a>
       @can('update system settings')
+      <a href="{{URL::to('/contact-us/show')}}">
+        <li class="{{ Route::is('contact-us.show') ? 'active_menu' : '' }}">Contact Quries</li>
+      </a>
       <a href="{{URL::to('/settings')}}">
         <li class="{{ Route::is('settings.index') ? 'active_menu' : '' }}">Settings</li>
       </a>
-@endcan
+      @endcan
     
     </ul>
   </div>

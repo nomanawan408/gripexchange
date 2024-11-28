@@ -71,7 +71,8 @@ class DepositController extends Controller
                 'receipt_path' => $deposit->receipt_path,
                 'description' => $deposit->description,
                 'transaction_datetime' => $deposit->transaction_datetime,
-                'status' => Auth::user()->is_admin ? 'approved' : 'pending'
+                'status' => Auth::user()->is_admin ? 'approved' : 'pending',
+                'type' => 'Desposit via ' . $deposit->paymentMethod->title
             ]);    
             // Get the current user
             $user = Auth::user();
@@ -118,7 +119,8 @@ class DepositController extends Controller
                     'description' => 'Referral Commission from ' . $user->name . '\'s deposit',
                     'transaction_datetime' => now(),
                     'type' => 'referral_commission',
-                    'status' => 'approved'
+                    'status' => 'approved',
+                    'type' => 'Referral Commission from ' . $user->name . '\'s deposit'
                 ]);
             }
         }    

@@ -19,7 +19,7 @@
 <div class="card">
 	<div class=" card-header"> 
 		<h4 class="card-title">Invite and Earn</h4>
-		<p>Share your referral link with your friends and earn rewards!<b>(Referal Commission:1%)<b></p>
+		<p>Share your referral link with your friends and earn rewards!<b>(Referal Commission:1%)</b></p>
 		<div class="input-group d-flex gap-2">
 		<input type="text" class="form-control" id="referralLink" value="{{ route('register', ['referral_code' => Auth::user()->referral_code]) }}" readonly>
 		<div class="input-group-append">

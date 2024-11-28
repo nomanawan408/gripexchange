@@ -1,5 +1,12 @@
 <div class="">
   <div class="navBar">
+
+        <div class="mobile_menu">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+        </div>
+
         <div class="profile ">
           <div class="profile_pic">
             <img src="{{ asset('img/avatar.png')}}" alt="">
@@ -104,5 +111,21 @@
       })
       .catch(error => console.error('Error marking notifications as read:', error));
   });
+</script>
+
+<script>
+
+    document.querySelector('.mobile_menu').addEventListener('click', function() {
+        const sidebar = document.querySelector('.sidebar_cont');
+        sidebar.style.transform = 'translate(0)';
+        
+    });
+
+    document.querySelector('.close_btn').addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar_cont');
+            sidebar.style.transform = 'translate(-100%)';
+
+        });
+
 </script>
 

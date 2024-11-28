@@ -32,6 +32,7 @@
         @if($paymentMethods->isEmpty())
           <p>No payment methods available.</p>
         @else
+        <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
@@ -72,6 +73,7 @@
                 @endforeach
             </tbody>
         </table>
+        </div>
         @endif
     </div>
 @endsection

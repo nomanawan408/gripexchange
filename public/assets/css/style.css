@@ -55,17 +55,6 @@ main {
     display: flex;
 }
 
-.sidebar_cont {
-    color: var(--bg-color);
-    height: 100%;
-    width: 22%;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    background: var(--secondary-color);
-    overflow: auto;
-}
 
 .menu_list a {
     text-decoration: none;
@@ -117,7 +106,7 @@ main {
 
 .menu_list {
     list-style-type: none;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -296,16 +285,82 @@ img {
     scale: 1.1;
 }
 
+.sidebar_cont {
+    color: var(--bg-color);
+    height: 100%;
+    width: 22%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--secondary-color);
+    overflow: auto;
+    position:relative;
+    top: 0;
+    left: 0;
+}
 
+@media screen and (min-width: 768px) {
+    .sidebar_cont {
+        transform: translate(0%) !important;
+    }
+    
+    .close_btn{
+        display: none !important;
+    }
+}
 
+@media screen and (max-width: 768px) {
+    .sidebar_cont{
+        transform: translate(-100%);
+        width: 70%;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        transition: .5s ease-in-out;
+    }   
 
+    .payment_method_card_section {
+        flex-direction: column;
+        padding: 10px;
+    }
 
+    .payment_method_card {
+        width: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
 
+    .state_card {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
 
+    .state_card h1 {
+        font-size: 24px;
+    }
 
+    .state_card h4 {
+        font-size: 16px;
+    }
 
+    /* .sidebar_cont{
+        display: none;
+    } */
+    .content_cont{
+        width: 100%;
+    }
+    .mobile_menu{
+        display: block !important;
+    }
+    .close_btn{
+        display: block !important;
+    }
+    
+ 
+}
 
-
-
-
-/* #8000ff */
+.mobile_menu{
+    display: none;
+}

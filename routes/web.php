@@ -18,6 +18,7 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\WithdrawController;
 use App\Http\Controllers\ExchangeRateController;
+use App\Http\Controllers\ContactController;
 use App\Models\CurrencyExchange;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -49,12 +50,14 @@ Route::get('/notifications/count', function () {
 })->name('notifications.count');
 
 
-Route::post('/notifications/mark-as-read', function () {
-    Auth::user()->unreadNotifications->markAsRead();
-    return response()->json(['success' => true]);
-})->name('notifications.markAsRead');
+    Route::post('/notifications/mark-as-read', function () {
+        Auth::user()->unreadNotifications->markAsRead();
+        return response()->json(['success' => true]);
+    })->name('notifications.markAsRead');
 
-
+    Route::get('/contact-us', [ContactController::class, 'index'])->name('contact-us.index');
+    Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contact-us.store'); 
+    Route::get('/contact-us/show', [ContactController::class, 'show'])->name('contact-us.show'); 
 
     // setup pin
     Route::get('/wallet/setup-pin', [WalletController::class, 'showSetupPinForm'])->name('wallet.setupPin');

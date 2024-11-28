@@ -51,38 +51,38 @@
         @if($accountStatements->isEmpty())
             <p>No account statements available.</p>
         @else
-            <table class="table w-100 table-striped">
-                <thead>
-                    <tr>
-                        
-                        @role('admin')
-                        <th scope="col">
-                            User(Email)
-                            <p></p>
-                        </th>
-                        @endrole                        
-                        <th scope="col">Transaction ID</th>
-                        <th scope="col">Time & Date</th>
-                        <th scope="col">Transaction Details</th>
-                        <th scope="col">Upload</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Status</th>
-                        @role('admin')
-                            <th scope="col">Action</th>
-                        @endrole
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($accountStatements as $statement)
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
                         <tr>
                             @role('admin')
-                            <td>
-                                <span style="font-weight: bold"> {{ $statement->user->name }} </span>
-                                <p style="font-style:italic">{{ $statement->user->email }}</p>
-                            </td> 
+                            <th scope="col">
+                                User(Email)
+                                <p></p>
+                            </th>
+                            @endrole                        
+                            <th scope="col">Transaction ID</th>
+                            <th scope="col">Time & Date</th>
+                            <th scope="col">Transaction Details</th>
+                            <th scope="col">Upload</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Status</th>
+                            @role('admin')
+                                <th scope="col">Action</th>
                             @endrole
-                            <td>{{ $statement->customer_transaction_id }}</td>
-                            <td>{{ $statement->created_at }}</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($accountStatements as $statement)
+                            <tr>
+                                @role('admin')
+                                <td>
+                                    <span style="font-weight: bold"> {{ $statement->user->name }} </span>
+                                    <p style="font-style:italic">{{ $statement->user->email }}</p>
+                                </td> 
+                                @endrole
+                                <td>{{ $statement->customer_transaction_id }}</td>
+                                <td>{{ $statement->created_at }}</td>
                                 <td>
                                     @if($statement->deposit)
                                         Deposit via {{ $statement->paymentMethod->title }}
@@ -94,7 +94,6 @@
                                         Deposite via Daily Profit
                                     @endif
                                 </td>
-                                {{-- <td>{{ $statement->description ?? $statement->paymentMethod->title }}</td> --}}
                                 <td>
                                     @if($statement->receipt_path)
                                     <a href="{{ asset('receipt/' . $statement->receipt_path) }}" class="badge text-bg-success text-decoration-none" target="_blank">View Receipt</a>
@@ -102,42 +101,39 @@
                                         <span class="badge text-bg-secondary">No Receipt</span>
                                     @endif
                                 </td>
-
-                          
-                          <td>{{ number_format($statement->amount, 2) }}</td>
-                          <td>
-                              @switch($statement->status)
-                                  @case('pending')
-                                      <span class="badge alert alert-secondary p-1 px-2">Pending</span>
-                                      @break
-                                  @case('approved')
-                                      <span class="badge alert alert-success p-1 px-2">Approved</span>
-                                      @break
-                                  @case('rejected')
-                                      <span class="badge alert alert-danger p-1 px-2">Rejected</span>
-                                      @break
-                              @endswitch
-                          </td>
-                          @role('admin')
-                          <td>
-                              @if ($statement->status == 'pending')
-                                  <form action="{{ route('account-statements.approve', $statement->id) }}" method="POST" style="display:inline-block;">
-                                      @csrf
-                                      <button type="submit" class="badge text-bg-success">Approve</button>
-                                  </form>
-                                  <form action="{{ route('account-statements.reject', $statement->id) }}" method="POST" style="display:inline-block;">
-                                      @csrf
-                                      <button type="submit" class="badge text-bg-danger">Reject</button>
-                                  </form>
-                              </td>
-                              @endif
-                          @endrole
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-    
-            {{-- <div class="d-flex justify-content-center">
+                                <td>{{ number_format($statement->amount, 2) }}</td>
+                                <td>
+                                    @switch($statement->status)
+                                        @case('pending')
+                                            <span class="badge alert alert-secondary p-1 px-2">Pending</span>
+                                            @break
+                                        @case('approved')
+                                            <span class="badge alert alert-success p-1 px-2">Approved</span>
+                                            @break
+                                        @case('rejected')
+                                            <span class="badge alert alert-danger p-1 px-2">Rejected</span>
+                                            @break
+                                    @endswitch
+                                </td>
+                                @role('admin')
+                                <td>
+                                    @if ($statement->status == 'pending')
+                                        <form action="{{ route('account-statements.approve', $statement->id) }}" method="POST" style="display:inline-block;">
+                                            @csrf
+                                            <button type="submit" class="badge text-bg-success">Approve</button>
+                                        </form>
+                                        <form action="{{ route('account-statements.reject', $statement->id) }}" method="POST" style="display:inline-block;">
+                                            @csrf
+                                            <button type="submit" class="badge text-bg-danger">Reject</button>
+                                        </form>
+                                    </td>
+                                    @endif
+                                @endrole
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>            {{-- <div class="d-flex justify-content-center">
                 {{ $accountStatements->links() }}
             </div> --}}
         @endif
